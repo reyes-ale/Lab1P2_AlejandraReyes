@@ -21,6 +21,8 @@ public class Lab1P2_AlejandraReyes {
         System.out.println("Registro de Usuarios \n 1.Registrar Usuario \n 2.Listar todo \n 3.Listar por dominio \n 4.Salir");
         int opcion = leer.nextInt();
         ArrayList <Usuario> usuarios = new ArrayList<>();
+        ArrayList <Usuario> gmail = new ArrayList<>(); 
+        ArrayList <Usuario> yahoo = new ArrayList<>();
         
         
         while (opcion>0 && opcion<4){
@@ -61,7 +63,7 @@ public class Lab1P2_AlejandraReyes {
                     }
                     
                     
-                    System.out.println("Ingrese su correo electronico: ");
+                    System.out.print("Ingrese su correo electronico [Gmail, Outlook, Yahoo, iCloud, ProtonMail, FastMail]");
                     String correo = leerS.nextLine();
                     while (matches(correo) == false){
                          System.out.println("Ingrese otro correo");
@@ -84,7 +86,30 @@ public class Lab1P2_AlejandraReyes {
                    
                     String [] dominio = correo.split("@"); 
                     
-                             
+                    
+                    
+                    switch (dominio[1]){
+                        case "gmail.com":
+                            
+                            break;
+                         
+                         case "yahoo.com":
+                            break;
+                         
+                          case "icloud.com":
+                            break;
+                            
+                          case "outlook.com":
+                            break;
+                            
+                         case "protonmail.com":
+                            break;
+                            
+                         case "fastmail.com":
+                            break;
+                    }
+                    
+                              
                     
                     
                     
@@ -94,6 +119,8 @@ public class Lab1P2_AlejandraReyes {
                     
                 case 2:
                     for (int i=0; i<usuarios.size(); i++){
+                        
+                        
                         System.out.println("Nombre: " + usuarios.get(i).getNombre() + "\n "
                             + "Apellido: "+ usuarios.get(i).getApellido()+ "\n Correo: "+ usuarios.get(i).getCorreo() + "\n Años: " + usuarios.get(i).getAnio()+ 
                             "\n Dias: " + usuarios.get(i).getDia() + "\n Meses: " + usuarios.get(i).getMes());
@@ -101,6 +128,14 @@ public class Lab1P2_AlejandraReyes {
                     break;
                     
                 case 3:
+                    for (int i=0; i<usuarios.size(); i++){
+                        System.out.println("Nombre: " + usuarios.get(i).getNombre() + "\n "
+                            + "Apellido: "+ usuarios.get(i).getApellido()+ "\n Correo: "+ usuarios.get(i).getCorreo() + "\n Años: " + usuarios.get(i).getAnio()+ 
+                            "\n Dias: " + usuarios.get(i).getDia() + "\n Meses: " + usuarios.get(i).getMes());
+                    }
+                    break;
+                    System.out.println("");
+                    
                     break; 
             }
             System.out.println("\nRegistro de Usuarios \n 1.Registrar Usuario \n 2.Listar todo \n 3.Listar por dominio \n 4.Salir");
