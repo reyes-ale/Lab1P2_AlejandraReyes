@@ -34,8 +34,6 @@ public class Lab1P2_AlejandraReyes {
                     Date fn = new Date (f);
                     Date actual = new Date();
                     
-                    
-                    
                     int anios;
                     if ((fn.getMonth()-1)<=(actual.getMonth()-1)){
                         anios = (actual.getYear() - fn.getYear()) ;
@@ -58,10 +56,8 @@ public class Lab1P2_AlejandraReyes {
                         break;
                     }
                     
-                    
-                    System.out.println(anios + " " + meses + " " + dias);
-                   
-                    
+                    Date fechan = new Date (anios, meses, dias);
+                    System.out.println(fechan);
                     System.out.println("Ingrese su correo electronico: ");
                     String correo = leerS.nextLine();
                     System.out.println(matches(correo));
