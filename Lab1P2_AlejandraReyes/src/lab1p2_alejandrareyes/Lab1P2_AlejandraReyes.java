@@ -20,9 +20,13 @@ public class Lab1P2_AlejandraReyes {
         Scanner leerS = new Scanner(System.in);
         System.out.println("Registro de Usuarios \n 1.Registrar Usuario \n 2.Listar todo \n 3.Listar por dominio \n 4.Salir");
         int opcion = leer.nextInt();
+        ArrayList <Usuario> usuarios = new ArrayList<>();
+        
         
         while (opcion>0 && opcion<4){
+            
             switch (opcion){
+                
                 case 1: //registrar usuario
                     SimpleDateFormat df = new SimpleDateFormat("MM/dd/yy");
                     System.out.print("Ingrese su nombre: ");
@@ -56,12 +60,9 @@ public class Lab1P2_AlejandraReyes {
                         break;
                     }
                     
-                    Date fechan = new Date (anios, meses, dias);
-                    System.out.println(fechan);
+                    
                     System.out.println("Ingrese su correo electronico: ");
                     String correo = leerS.nextLine();
-                    System.out.println(matches(correo));
-                    
                     while (matches(correo) == false){
                          System.out.println("Ingrese otro correo");
                          System.out.println("Ingrese correo nuevamente: ");
@@ -72,28 +73,38 @@ public class Lab1P2_AlejandraReyes {
                             
                         }
                     }
-                    
-                    String [] dominio = correo.split("@"); 
                     System.out.println("Ingrese su contraseña: ");
                     String contra = leerS.nextLine();
                     while (matches2(contra) == false){
-                        System.out.println("Ingrese otro correo");
-                         System.out.println("Ingrese correo nuevamente: ");
+                        System.out.println("Ingrese otra contraseña: ");
                          contra=leerS.nextLine();
                     }
+                    
+                    usuarios.add(new Usuario(nombre,apellido,correo,anios,dias,meses));
+                   
+                    String [] dominio = correo.split("@"); 
+                    
+                             
+                    
+                    
+                    
+                    
                      
-                    
-                    
-                    System.out.println(fn);
-                    
                     break;
                     
                 case 2:
+                    for (int i=0; i<usuarios.size(); i++){
+                        System.out.println("Nombre: " + usuarios.get(i).getNombre() + "\n "
+                            + "Apellido: "+ usuarios.get(i).getApellido()+ "\n Correo: "+ usuarios.get(i).getCorreo() + "\n Años: " + usuarios.get(i).getAnio()+ 
+                            "\n Dias: " + usuarios.get(i).getDia() + "\n Meses: " + usuarios.get(i).getMes());
+                    }
                     break;
                     
                 case 3:
                     break; 
             }
+            System.out.println("Registro de Usuarios \n 1.Registrar Usuario \n 2.Listar todo \n 3.Listar por dominio \n 4.Salir");
+            opcion = leer.nextInt();
         }
     }
     
@@ -105,7 +116,7 @@ public class Lab1P2_AlejandraReyes {
     }
     
     public static boolean matches2(String cad){
-        String regex = "^(?=.[a-z])(?=.[A-Z])(?=.\\d)(?=.[!\\?<>$%]).{8,}$";
+        String regex = "^[a-zA-Z0-9._%&$+-?<>!]{8,}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(cad);
         return matcher.matches();
