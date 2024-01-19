@@ -38,7 +38,7 @@ public class Lab1P2_AlejandraReyes {
                     
                     int anios;
                         //10                    11
-                    if ((fn.getMonth()-1)<(actual.getMonth()-1) || (fn.getMonth()-1) ==(fn.getMonth()-1)){
+                    if ((fn.getMonth()-1)<=(actual.getMonth()-1)){
                         anios = (actual.getYear() - fn.getYear()) -1;
                     }
                     else {
@@ -55,18 +55,24 @@ public class Lab1P2_AlejandraReyes {
                     int dias = actual.getDay() - fn.getDay();
                     
                     
-                    
-                    
-                    
-                    
                     System.out.println(anios + " " + meses + " " + dias);
                    
                     
                     System.out.println("Ingrese su correo electronico: ");
                     String correo = leerS.nextLine();
+                    System.out.println(matches(correo));
+                    
+                    while (matches(correo) == false){
+                        System.out.println("Ingrese otro correo");
+                         System.out.println("Ingrese correo nuevamente: ");
+                         correo=leerS.nextLine();
+                    }
+                    
+                   
                     String [] dominio = correo.split("@"); 
                     System.out.println("Ingrese su contraseña: ");
                     String contra = leerS.nextLine();
+                     
                     
                     
                     
@@ -74,7 +80,7 @@ public class Lab1P2_AlejandraReyes {
                     //anios, meses,dias
                     
                     //huevo@gmail.com
-                    switch (dominio[1]){
+                    /*switch (dominio[1]){
                         case "gmail.com":
                             //ArrayList<Usuarios> = new ArrayList<>(); 
                             ArrayList<Gmail> gmail= new ArrayList<>();
@@ -96,7 +102,7 @@ public class Lab1P2_AlejandraReyes {
                             
                         case "fastmail.com":
                             break; 
-                    }
+                    }*/
                     
                     
                     
@@ -118,7 +124,7 @@ public class Lab1P2_AlejandraReyes {
         String regex = "^[a-zA-Z0-9._%&$+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(cad);
-           return matcher.matches();
+       return matcher.matches();
     }
     
 }
