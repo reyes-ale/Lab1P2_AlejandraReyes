@@ -23,7 +23,10 @@ public class Lab1P2_AlejandraReyes {
         ArrayList <Usuario> usuarios = new ArrayList<>();
         ArrayList <Usuario> gmail = new ArrayList<>(); 
         ArrayList <Usuario> yahoo = new ArrayList<>();
-        
+        ArrayList <Usuario> icloud = new ArrayList<>();
+        ArrayList <Usuario> outlook = new ArrayList<>();
+        ArrayList <Usuario> protonmail = new ArrayList<>();
+        ArrayList <Usuario> fastmail = new ArrayList<>();
         
         while (opcion>0 && opcion<4){
             
@@ -84,8 +87,7 @@ public class Lab1P2_AlejandraReyes {
                     
                     usuarios.add(new Usuario(nombre,apellido,correo,anios,dias,meses));
                    
-                    String [] dominio = correo.split("@"); 
-                    
+                   
                     
                     
                     switch (dominio[1]){
@@ -119,8 +121,6 @@ public class Lab1P2_AlejandraReyes {
                     
                 case 2:
                     for (int i=0; i<usuarios.size(); i++){
-                        
-                        
                         System.out.println("Nombre: " + usuarios.get(i).getNombre() + "\n "
                             + "Apellido: "+ usuarios.get(i).getApellido()+ "\n Correo: "+ usuarios.get(i).getCorreo() + "\n Años: " + usuarios.get(i).getAnio()+ 
                             "\n Dias: " + usuarios.get(i).getDia() + "\n Meses: " + usuarios.get(i).getMes());
@@ -129,14 +129,30 @@ public class Lab1P2_AlejandraReyes {
                     
                 case 3:
                     for (int i=0; i<usuarios.size(); i++){
-                        System.out.println("Nombre: " + usuarios.get(i).getNombre() + "\n "
-                            + "Apellido: "+ usuarios.get(i).getApellido()+ "\n Correo: "+ usuarios.get(i).getCorreo() + "\n Años: " + usuarios.get(i).getAnio()+ 
-                            "\n Dias: " + usuarios.get(i).getDia() + "\n Meses: " + usuarios.get(i).getMes());
+                        String [] dominio =  usuarios.get(i).getCorreo().split("@"); 
+                        if (dominio[0] == "gmail.com"){
+                            gmail.add(usuarios.get(i));
+                        }
+                        else if (dominio[0] == "yahoo.com"){
+                            
+                        }
+                        else if (dominio[0] == "outlook.com"){
+                            
+                        }
+                        else if (dominio[0] == "icloud.com"){
+                            
+                        }
+                        else if (dominio[0] == "protonmail.com"){
+                            
+                        }
+                        else if (dominio[0] == "fastmail.com"){
+                            
+                        }
+                         
+                       
                     }
                     break;
-                    System.out.println("");
                     
-                    break; 
             }
             System.out.println("\nRegistro de Usuarios \n 1.Registrar Usuario \n 2.Listar todo \n 3.Listar por dominio \n 4.Salir");
             opcion = leer.nextInt();
