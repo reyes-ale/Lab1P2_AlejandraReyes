@@ -66,18 +66,13 @@ public class Lab1P2_AlejandraReyes {
                     }
                     
                     
-                    System.out.print("Ingrese su correo electronico [Gmail, Outlook, Yahoo, iCloud, ProtonMail, FastMail]");
+                    System.out.print("Ingrese su correo electronico [Gmail, Outlook, Yahoo, iCloud, ProtonMail, FastMail]: ");
                     String correo = leerS.nextLine();
                     while (matches(correo) == false){
-                         System.out.println("Ingrese otro correo");
-                         System.out.println("Ingrese correo nuevamente: ");
+                         System.out.println("Escribio su correo incorrectamente. Ingrese correo denuevo: ");
                          correo=leerS.nextLine();
                     }
-                    if (matches(correo) == true){
-                        if (correo.contains("gmail") || correo.contains("yahoo")){
-                            
-                        }
-                    }
+                    
                     System.out.println("Ingrese su contraseña: ");
                     String contra = leerS.nextLine();
                     while (matches2(contra) == false){
@@ -86,36 +81,8 @@ public class Lab1P2_AlejandraReyes {
                     }
                     
                     usuarios.add(new Usuario(nombre,apellido,correo,anios,dias,meses));
-                   
-                   
-                    
-                    
-                    switch (dominio[1]){
-                        case "gmail.com":
-                            
-                            break;
-                         
-                         case "yahoo.com":
-                            break;
-                         
-                          case "icloud.com":
-                            break;
-                            
-                          case "outlook.com":
-                            break;
-                            
-                         case "protonmail.com":
-                            break;
-                            
-                         case "fastmail.com":
-                            break;
-                    }
                     
                               
-                    
-                    
-                    
-                    
                      
                     break;
                     
@@ -130,28 +97,64 @@ public class Lab1P2_AlejandraReyes {
                 case 3:
                     for (int i=0; i<usuarios.size(); i++){
                         String [] dominio =  usuarios.get(i).getCorreo().split("@"); 
-                        if (dominio[0] == "gmail.com"){
+                        if (dominio[1] == "gmail.com"){
                             gmail.add(usuarios.get(i));
                         }
-                        else if (dominio[0] == "yahoo.com"){
-                            
+                        else if (dominio[1] == "yahoo.com"){
+                            yahoo.add(usuarios.get(i));
                         }
-                        else if (dominio[0] == "outlook.com"){
-                            
+                        else if (dominio[1] == "outlook.com"){
+                            outlook.add(usuarios.get(i));
                         }
-                        else if (dominio[0] == "icloud.com"){
-                            
+                        else if (dominio[1] == "icloud.com"){
+                            icloud.add(usuarios.get(i));
                         }
-                        else if (dominio[0] == "protonmail.com"){
-                            
+                        else if (dominio[1] == "protonmail.com"){
+                            protonmail.add(usuarios.get(i));
                         }
                         else if (dominio[0] == "fastmail.com"){
-                            
+                            fastmail.add(usuarios.get(i));
                         }
-                         
-                       
                     }
+                    for (int i=0; i<gmail.size(); i++){
+                        System.out.println("Gmail \n Nombre: " + usuarios.get(i).getNombre() + "\n "
+                            + "Apellido: "+ usuarios.get(i).getApellido()+ "\n Correo: "+ usuarios.get(i).getCorreo() + "\n Años: " + usuarios.get(i).getAnio()+ 
+                            "\n Dias: " + usuarios.get(i).getDia() + "\n Meses: " + usuarios.get(i).getMes());
+                    }
+                    
+                    for (int i=0; i<yahoo.size(); i++){
+                        System.out.println("\n Yahoo \n Nombre: " + usuarios.get(i).getNombre() + "\n "
+                            + "Apellido: "+ usuarios.get(i).getApellido()+ "\n Correo: "+ usuarios.get(i).getCorreo() + "\n Años: " + usuarios.get(i).getAnio()+ 
+                            "\n Dias: " + usuarios.get(i).getDia() + "\n Meses: " + usuarios.get(i).getMes());
+                    }
+                    
+                    for (int i=0; i<outlook.size(); i++){
+                        System.out.println("\n Outlook \n Nombre: " + usuarios.get(i).getNombre() + "\n "
+                            + "Apellido: "+ usuarios.get(i).getApellido()+ "\n Correo: "+ usuarios.get(i).getCorreo() + "\n Años: " + usuarios.get(i).getAnio()+ 
+                            "\n Dias: " + usuarios.get(i).getDia() + "\n Meses: " + usuarios.get(i).getMes());
+                    }
+                    
+                    for (int i=0; i<icloud.size(); i++){
+                        System.out.println("\n iCloud \n Nombre: " + usuarios.get(i).getNombre() + "\n "
+                            + "Apellido: "+ usuarios.get(i).getApellido()+ "\n Correo: "+ usuarios.get(i).getCorreo() + "\n Años: " + usuarios.get(i).getAnio()+ 
+                            "\n Dias: " + usuarios.get(i).getDia() + "\n Meses: " + usuarios.get(i).getMes());
+                    }
+                    
+                    for (int i=0; i<protonmail.size(); i++){
+                        System.out.println("\n ProtonMail \n Nombre: " + usuarios.get(i).getNombre() + "\n "
+                            + "Apellido: "+ usuarios.get(i).getApellido()+ "\n Correo: "+ usuarios.get(i).getCorreo() + "\n Años: " + usuarios.get(i).getAnio()+ 
+                            "\n Dias: " + usuarios.get(i).getDia() + "\n Meses: " + usuarios.get(i).getMes());
+                    }
+                    
+                    for (int i=0; i<fastmail.size(); i++){
+                        System.out.println("\n FastMail \n Nombre: " + usuarios.get(i).getNombre() + "\n "
+                            + "Apellido: "+ usuarios.get(i).getApellido()+ "\n Correo: "+ usuarios.get(i).getCorreo() + "\n Años: " + usuarios.get(i).getAnio()+ 
+                            "\n Dias: " + usuarios.get(i).getDia() + "\n Meses: " + usuarios.get(i).getMes());
+                    }
+                    
+                    
                     break;
+                    
                     
             }
             System.out.println("\nRegistro de Usuarios \n 1.Registrar Usuario \n 2.Listar todo \n 3.Listar por dominio \n 4.Salir");
