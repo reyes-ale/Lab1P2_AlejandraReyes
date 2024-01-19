@@ -103,7 +103,7 @@ public class Lab1P2_AlejandraReyes {
                 case 3:
                     break; 
             }
-            System.out.println("Registro de Usuarios \n 1.Registrar Usuario \n 2.Listar todo \n 3.Listar por dominio \n 4.Salir");
+            System.out.println("\nRegistro de Usuarios \n 1.Registrar Usuario \n 2.Listar todo \n 3.Listar por dominio \n 4.Salir");
             opcion = leer.nextInt();
         }
     }
