@@ -37,12 +37,11 @@ public class Lab1P2_AlejandraReyes {
                     
                     
                     int anios;
-                        //10                    11
                     if ((fn.getMonth()-1)<=(actual.getMonth()-1)){
-                        anios = (actual.getYear() - fn.getYear()) -1;
+                        anios = (actual.getYear() - fn.getYear()) ;
                     }
                     else {
-                        anios = actual.getYear() - fn.getYear();
+                        anios = (actual.getYear() - fn.getYear())-1;
                     }
                     
                     int meses;
@@ -52,7 +51,12 @@ public class Lab1P2_AlejandraReyes {
                        else {
                            meses = (actual.getMonth()-1) - (fn.getMonth()-1);
                        }
-                    int dias = actual.getDay() - fn.getDay();
+                    int dias = actual.getDate() - fn.getDate();
+                    
+                    if (anios <14){
+                        System.out.println("Tiene que tener por lo menos 13 años de edad");
+                        break;
+                    }
                     
                     
                     System.out.println(anios + " " + meses + " " + dias);
@@ -63,48 +67,25 @@ public class Lab1P2_AlejandraReyes {
                     System.out.println(matches(correo));
                     
                     while (matches(correo) == false){
-                        System.out.println("Ingrese otro correo");
+                         System.out.println("Ingrese otro correo");
                          System.out.println("Ingrese correo nuevamente: ");
                          correo=leerS.nextLine();
                     }
+                    if (matches(correo) == true){
+                        if (correo.contains("gmail") || correo.contains("yahoo")){
+                            
+                        }
+                    }
                     
-                   
                     String [] dominio = correo.split("@"); 
                     System.out.println("Ingrese su contraseña: ");
                     String contra = leerS.nextLine();
+                    while (matches2(contra) == false){
+                        System.out.println("Ingrese otro correo");
+                         System.out.println("Ingrese correo nuevamente: ");
+                         contra=leerS.nextLine();
+                    }
                      
-                    
-                    
-                    
-                    //Date actual = new Date(); - fechanacimiento
-                    //anios, meses,dias
-                    
-                    //huevo@gmail.com
-                    /*switch (dominio[1]){
-                        case "gmail.com":
-                            //ArrayList<Usuarios> = new ArrayList<>(); 
-                            ArrayList<Gmail> gmail= new ArrayList<>();
-                            //Gmail usuario = new Gmail(nombre,apellido,edad, correo,contra);
-                            break;
-                            
-                        case "outlook.com":
-                            //Outlook usuario2 = new Outlook(nombre,apellido,fn, correo,contra);
-                            break;
-                            
-                        case "yahoo.com":
-                            break;
-                            
-                        case "icloud.com":
-                            break; 
-                            
-                        case "protonmail.com":
-                            break;
-                            
-                        case "fastmail.com":
-                            break; 
-                    }*/
-                    
-                    
                     
                     
                     System.out.println(fn);
@@ -125,6 +106,13 @@ public class Lab1P2_AlejandraReyes {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(cad);
        return matcher.matches();
+    }
+    
+    public static boolean matches2(String cad){
+        String regex = "^(?=.[a-z])(?=.[A-Z])(?=.\\d)(?=.[!\\?<>$%]).{8,}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(cad);
+        return matcher.matches();
     }
     
 }
