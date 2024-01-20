@@ -12,17 +12,20 @@ public class Usuario {
     String nombre;
     String apellido;
     String correo; 
+    String contra;
     int anio;
     int dia;
     int mes; 
 
-    public Usuario(String nombre, String apellido, String correo, int anio, int dia, int mes) {
+    public Usuario(String nombre, String apellido, String correo, String contra, int anio, int dia, int mes) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
         this.anio = anio;
         this.dia = dia;
         this.mes = mes;
+        this.contra =contra;
+        
     }
 
     public String getNombre() {
@@ -44,6 +47,15 @@ public class Usuario {
     public String getCorreo() {
         return correo;
     }
+
+    public String getContra() {
+        return contra;
+    }
+
+    public void setContra(String contra) {
+        this.contra = contra;
+    }
+    
 
     public void setCorreo(String correo) {
         this.correo = correo;

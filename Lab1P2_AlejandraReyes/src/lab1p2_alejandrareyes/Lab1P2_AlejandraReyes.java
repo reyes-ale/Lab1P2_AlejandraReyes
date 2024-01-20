@@ -12,21 +12,19 @@ import java.util.regex.Pattern;
  */
 public class Lab1P2_AlejandraReyes {
 
-    /**
-     * @param args the command line arguments
-     */
+        static ArrayList <Usuario> usuarios = new ArrayList<>();
+        static ArrayList <Usuario> gmail = new ArrayList<>(); 
+        static ArrayList <Usuario> yahoo = new ArrayList<>();
+        static ArrayList <Usuario> icloud = new ArrayList<>();
+        static ArrayList <Usuario> outlook = new ArrayList<>();
+        static ArrayList <Usuario> protonmail = new ArrayList<>();
+        static ArrayList <Usuario> fastmail = new ArrayList<>();
     public static void main(String[] args) {
         Scanner leer = new Scanner(System.in);
         Scanner leerS = new Scanner(System.in);
         System.out.println("Registro de Usuarios \n 1.Registrar Usuario \n 2.Listar todo \n 3.Listar por dominio \n 4.Salir");
         int opcion = leer.nextInt();
-        ArrayList <Usuario> usuarios = new ArrayList<>();
-        ArrayList <Usuario> gmail = new ArrayList<>(); 
-        ArrayList <Usuario> yahoo = new ArrayList<>();
-        ArrayList <Usuario> icloud = new ArrayList<>();
-        ArrayList <Usuario> outlook = new ArrayList<>();
-        ArrayList <Usuario> protonmail = new ArrayList<>();
-        ArrayList <Usuario> fastmail = new ArrayList<>();
+        
         
         while (opcion>0 && opcion<4){
             
@@ -68,8 +66,13 @@ public class Lab1P2_AlejandraReyes {
                     
                     System.out.print("Ingrese su correo electronico [Gmail, Outlook, Yahoo, iCloud, ProtonMail, FastMail]: ");
                     String correo = leerS.nextLine();
-                    while (matches(correo) == false){
-                         System.out.println("Escribio su correo incorrectamente. Ingrese correo denuevo: ");
+                    while (matches(correo) == false || dom(correo)==false || correoexiste(correo)==true){
+                         System.out.println("Escribio su correo incorrectamente. Debe Ingrese correo denuevo: ");
+                         correo=leerS.nextLine();
+                    }
+                    
+                    while (correoexiste(correo)==true){
+                         System.out.print("Este usuario ya existe. Ingrese otro correo nuevamente: ");
                          correo=leerS.nextLine();
                     }
                     
@@ -80,23 +83,24 @@ public class Lab1P2_AlejandraReyes {
                          contra=leerS.nextLine();
                     }
                     
-                    usuarios.add(new Usuario(nombre,apellido,correo,anios,dias,meses));
+                    usuarios.add(new Usuario(nombre,apellido,correo,contra,anios,dias,meses));
                     
-                              
+                   
                      
                     break;
                     
                 case 2:
                     for (int i=0; i<usuarios.size(); i++){
                         System.out.println("Nombre: " + usuarios.get(i).getNombre() + "\n "
-                            + "Apellido: "+ usuarios.get(i).getApellido()+ "\n Correo: "+ usuarios.get(i).getCorreo() + "\n Años: " + usuarios.get(i).getAnio()+ 
+                            + "Apellido: "+ usuarios.get(i).getApellido()+ "\n Correo: "+ usuarios.get(i).getCorreo() + "\n Contraseña: "+ usuarios.get(i).getContra() + "\n Años: " + usuarios.get(i).getAnio()+ 
                             "\n Dias: " + usuarios.get(i).getDia() + "\n Meses: " + usuarios.get(i).getMes());
                     }
                     break;
                     
                 case 3:
+                    
                     for (int i=0; i<usuarios.size(); i++){
-                        String [] dominio =  usuarios.get(i).getCorreo().split("@"); 
+                        String [] dominio =  (usuarios.get(i).getCorreo()).split("@"); 
                         if (dominio[1] == "gmail.com"){
                             gmail.add(usuarios.get(i));
                         }
@@ -112,43 +116,44 @@ public class Lab1P2_AlejandraReyes {
                         else if (dominio[1] == "protonmail.com"){
                             protonmail.add(usuarios.get(i));
                         }
-                        else if (dominio[0] == "fastmail.com"){
+                        else if (dominio[1] == "fastmail.com"){
                             fastmail.add(usuarios.get(i));
                         }
                     }
+                    
                     for (int i=0; i<gmail.size(); i++){
                         System.out.println("Gmail \n Nombre: " + usuarios.get(i).getNombre() + "\n "
-                            + "Apellido: "+ usuarios.get(i).getApellido()+ "\n Correo: "+ usuarios.get(i).getCorreo() + "\n Años: " + usuarios.get(i).getAnio()+ 
+                            + "Apellido: "+ usuarios.get(i).getApellido()+ "\n Correo: "+ usuarios.get(i).getCorreo() + "\n Contraseña: "+ usuarios.get(i).getContra() + "\n Años: " + usuarios.get(i).getAnio()+ 
                             "\n Dias: " + usuarios.get(i).getDia() + "\n Meses: " + usuarios.get(i).getMes());
                     }
                     
                     for (int i=0; i<yahoo.size(); i++){
                         System.out.println("\n Yahoo \n Nombre: " + usuarios.get(i).getNombre() + "\n "
-                            + "Apellido: "+ usuarios.get(i).getApellido()+ "\n Correo: "+ usuarios.get(i).getCorreo() + "\n Años: " + usuarios.get(i).getAnio()+ 
+                            + "Apellido: "+ usuarios.get(i).getApellido()+ "\n Correo: "+ usuarios.get(i).getCorreo() + "\n Contraseña: "+ usuarios.get(i).getContra() + "\n Años: " + usuarios.get(i).getAnio()+ 
                             "\n Dias: " + usuarios.get(i).getDia() + "\n Meses: " + usuarios.get(i).getMes());
                     }
                     
                     for (int i=0; i<outlook.size(); i++){
                         System.out.println("\n Outlook \n Nombre: " + usuarios.get(i).getNombre() + "\n "
-                            + "Apellido: "+ usuarios.get(i).getApellido()+ "\n Correo: "+ usuarios.get(i).getCorreo() + "\n Años: " + usuarios.get(i).getAnio()+ 
+                            + "Apellido: "+ usuarios.get(i).getApellido()+ "\n Correo: "+ usuarios.get(i).getCorreo() + "\n Contraseña: "+ usuarios.get(i).getContra() + "\n Años: " + usuarios.get(i).getAnio()+ 
                             "\n Dias: " + usuarios.get(i).getDia() + "\n Meses: " + usuarios.get(i).getMes());
                     }
                     
                     for (int i=0; i<icloud.size(); i++){
                         System.out.println("\n iCloud \n Nombre: " + usuarios.get(i).getNombre() + "\n "
-                            + "Apellido: "+ usuarios.get(i).getApellido()+ "\n Correo: "+ usuarios.get(i).getCorreo() + "\n Años: " + usuarios.get(i).getAnio()+ 
+                            + "Apellido: "+ usuarios.get(i).getApellido()+ "\n Correo: "+ usuarios.get(i).getCorreo() + "\n Contraseña: "+ usuarios.get(i).getContra() + "\n Años: " + usuarios.get(i).getAnio()+ 
                             "\n Dias: " + usuarios.get(i).getDia() + "\n Meses: " + usuarios.get(i).getMes());
                     }
                     
                     for (int i=0; i<protonmail.size(); i++){
                         System.out.println("\n ProtonMail \n Nombre: " + usuarios.get(i).getNombre() + "\n "
-                            + "Apellido: "+ usuarios.get(i).getApellido()+ "\n Correo: "+ usuarios.get(i).getCorreo() + "\n Años: " + usuarios.get(i).getAnio()+ 
+                            + "Apellido: "+ usuarios.get(i).getApellido()+ "\n Correo: "+ usuarios.get(i).getCorreo() + "\n Contraseña: "+ usuarios.get(i).getContra() + "\n Años: " + usuarios.get(i).getAnio()+ 
                             "\n Dias: " + usuarios.get(i).getDia() + "\n Meses: " + usuarios.get(i).getMes());
                     }
                     
                     for (int i=0; i<fastmail.size(); i++){
                         System.out.println("\n FastMail \n Nombre: " + usuarios.get(i).getNombre() + "\n "
-                            + "Apellido: "+ usuarios.get(i).getApellido()+ "\n Correo: "+ usuarios.get(i).getCorreo() + "\n Años: " + usuarios.get(i).getAnio()+ 
+                            + "Apellido: "+ usuarios.get(i).getApellido()+ "\n Correo: "+ usuarios.get(i).getCorreo() + "\n Contraseña: "+ usuarios.get(i).getContra() +  "\n Años: " + usuarios.get(i).getAnio()+ 
                             "\n Dias: " + usuarios.get(i).getDia() + "\n Meses: " + usuarios.get(i).getMes());
                     }
                     
@@ -175,5 +180,27 @@ public class Lab1P2_AlejandraReyes {
         Matcher matcher = pattern.matcher(cad);
         return matcher.matches();
     }
+    
+    public static boolean dom (String correo) {
+        String[] domsi = {"gmail", "outlook", "yahoo", "icloud", "protonmail", "fastmail"};
+        for (int i=0; i<domsi.length; i++){
+            if (correo.contains("@" + domsi[i] + ".com")) {
+                return true;
+            }
+        }
+       
+        return false;
+    }
+    
+    public static boolean correoexiste (String correo){
+        boolean esta = false;
+        for (int i =0; i<usuarios.size(); i++){
+            if (correo == (usuarios.get(i).getCorreo())){
+                return true;
+            }
+        }
+        return false;
+    }
+
     
 }
