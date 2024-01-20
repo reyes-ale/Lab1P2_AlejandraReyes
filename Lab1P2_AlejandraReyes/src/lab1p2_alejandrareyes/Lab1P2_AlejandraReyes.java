@@ -68,12 +68,12 @@ public class Lab1P2_AlejandraReyes {
                         System.out.println("Tiene que tener por lo menos 13 años de edad");
                         break;
                     }
-                    
+                    String[] domsi = {"gmail", "outlook", "yahoo", "icloud", "protonmail", "fastmail"};
                     
                     System.out.print("Ingrese su correo electronico [Gmail, Outlook, Yahoo, iCloud, ProtonMail, FastMail]: ");
                     String correo = leerS.nextLine();
                     while (matches(correo) == false || dom(correo)==false ){
-                         System.out.println("Escribio su correo incorrectamente. Debe Ingrese correo denuevo: ");
+                         System.out.println("Escribio su correo incorrectamente o el dominio no esta disponible. Debe Ingrese correo denuevo: ");
                          correo=leerS.nextLine();
                     }
                     
@@ -81,6 +81,7 @@ public class Lab1P2_AlejandraReyes {
                          System.out.print("Este usuario ya existe. Ingrese otro correo nuevamente: ");
                          correo=leerS.nextLine();
                     }
+                    
                     
                     System.out.println("Ingrese su contraseña: ");
                     String contra = leerS.nextLine();
@@ -90,7 +91,7 @@ public class Lab1P2_AlejandraReyes {
                          contra=leerS.nextLine();
                     }
                     
-                    usuarios.add(new Usuario(nombre,apellido,correo,contra,anios,dias,meses));
+                    usuarios.add(new Usuario(nombre,apellido,correo,contra,Math.abs(anios),Math.abs(dias),Math.abs(meses)));
                     
                    
                      
@@ -100,8 +101,8 @@ public class Lab1P2_AlejandraReyes {
                     for (int i=0; i<usuarios.size(); i++){
                         System.out.println();
                         System.out.println("Nombre: " + usuarios.get(i).getNombre() + "\n "
-                            + "Apellido: "+ usuarios.get(i).getApellido()+ "\n Correo: "+ usuarios.get(i).getCorreo() + "\n Contraseña: "+ usuarios.get(i).getContra() + "\n Años: " + usuarios.get(i).getAnio()+ 
-                            "\n Dias: " + usuarios.get(i).getDia() + "\n Meses: " + usuarios.get(i).getMes());
+                            + "Apellido: "+ usuarios.get(i).getApellido()+ "\n Correo: "+ usuarios.get(i).getCorreo() + "\n Contraseña: "+ usuarios.get(i).getContra() + "\n Edad: " + usuarios.get(i).getAnio()+ 
+                            " años, " + usuarios.get(i).getMes() + " meses, " + usuarios.get(i).getDia() + " dias");
                     }
                     break;
                     
@@ -189,12 +190,12 @@ public class Lab1P2_AlejandraReyes {
         for (int i=0; i<dominio.size(); i++){
             Usuario usuario = dominio.get(i);
                         System.out.println("\n Nombre: " + dominio.get(i).getNombre() + "\n "
-                            + "Apellido: "+ dominio.get(i).getApellido()+ "\n Correo: "+ dominio.get(i).getCorreo() + "\n Contraseña: "+ dominio.get(i).getContra() + "\n Años: " + dominio.get(i).getAnio()+ 
-                            "\n Dias: " + dominio.get(i).getDia() + "\n Meses: " + dominio.get(i).getMes());
+                            + "Apellido: "+ dominio.get(i).getApellido()+ "\n Correo: "+ dominio.get(i).getCorreo() + "\n Contraseña: "+ dominio.get(i).getContra() + "\n Edad: " + dominio.get(i).getAnio()+ 
+                            " años, " + dominio.get(i).getMes() + " meses, " + dominio.get(i).getDia() + " dias");
+                    
          }
         
     }
-    
     
 
     
