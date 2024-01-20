@@ -36,7 +36,7 @@ public class Lab1P2_AlejandraReyes {
                     String nombre = leerS.nextLine();
                     System.out.print("Ingrese su apellido: ");
                     String apellido = leerS.nextLine();
-                    System.out.println("Ingrese fecha de nacimiento en formato mm/dd/yyyy: ");
+                    System.out.print("Ingrese fecha de nacimiento en formato mm/dd/yyyy: ");
                     String f = leerS.nextLine();
                     Date fn = new Date (f);
                     Date actual = new Date();
@@ -57,6 +57,12 @@ public class Lab1P2_AlejandraReyes {
                            meses = (actual.getMonth()-1) - (fn.getMonth()-1);
                        }
                     int dias = actual.getDate() - fn.getDate();
+                     if (fn.getDate() > actual.getDate()){
+                           meses = fn.getDate() - actual.getDate();
+                       }
+                       else {
+                           meses = actual.getDate() - fn.getDate();
+                       }
                     
                     if (anios <14){
                         System.out.println("Tiene que tener por lo menos 13 años de edad");
@@ -66,7 +72,7 @@ public class Lab1P2_AlejandraReyes {
                     
                     System.out.print("Ingrese su correo electronico [Gmail, Outlook, Yahoo, iCloud, ProtonMail, FastMail]: ");
                     String correo = leerS.nextLine();
-                    while (matches(correo) == false || dom(correo)==false || correoexiste(correo)==true){
+                    while (matches(correo) == false || dom(correo)==false ){
                          System.out.println("Escribio su correo incorrectamente. Debe Ingrese correo denuevo: ");
                          correo=leerS.nextLine();
                     }
@@ -79,7 +85,8 @@ public class Lab1P2_AlejandraReyes {
                     System.out.println("Ingrese su contraseña: ");
                     String contra = leerS.nextLine();
                     while (matches2(contra) == false){
-                        System.out.println("Ingrese otra contraseña: ");
+                        System.out.println("Su contraseña debe tener mas de 8 caracteres y por lo menos una  mayúscula, una  minúscula, \n un número y un símbolo (“!“, “?”," +
+"“<”, “>”, “$” y “%”). Ingrese otra contraseña: ");
                          contra=leerS.nextLine();
                     }
                     
@@ -91,6 +98,7 @@ public class Lab1P2_AlejandraReyes {
                     
                 case 2:
                     for (int i=0; i<usuarios.size(); i++){
+                        System.out.println();
                         System.out.println("Nombre: " + usuarios.get(i).getNombre() + "\n "
                             + "Apellido: "+ usuarios.get(i).getApellido()+ "\n Correo: "+ usuarios.get(i).getCorreo() + "\n Contraseña: "+ usuarios.get(i).getContra() + "\n Años: " + usuarios.get(i).getAnio()+ 
                             "\n Dias: " + usuarios.get(i).getDia() + "\n Meses: " + usuarios.get(i).getMes());
@@ -101,62 +109,36 @@ public class Lab1P2_AlejandraReyes {
                     
                     for (int i=0; i<usuarios.size(); i++){
                         String [] dominio =  (usuarios.get(i).getCorreo()).split("@"); 
-                        if (dominio[1] == "gmail.com"){
-                            gmail.add(usuarios.get(i));
-                        }
-                        else if (dominio[1] == "yahoo.com"){
-                            yahoo.add(usuarios.get(i));
-                        }
-                        else if (dominio[1] == "outlook.com"){
-                            outlook.add(usuarios.get(i));
-                        }
-                        else if (dominio[1] == "icloud.com"){
-                            icloud.add(usuarios.get(i));
-                        }
-                        else if (dominio[1] == "protonmail.com"){
-                            protonmail.add(usuarios.get(i));
-                        }
-                        else if (dominio[1] == "fastmail.com"){
-                            fastmail.add(usuarios.get(i));
-                        }
+                        if (dominio.length == 2) {
+                            switch (dominio[1]) {
+                                case "gmail.com":
+                                   gmail.add(usuarios.get(i));
+                                   break;
+                                case "yahoo.com":
+                                   yahoo.add(usuarios.get(i));
+                                   break;
+                                case "outlook.com":
+                                   outlook.add(usuarios.get(i));
+                                   break;
+                                case "icloud.com":
+                                   icloud.add(usuarios.get(i));
+                                   break;
+                                case "protonmail.com":
+                                   protonmail.add(usuarios.get(i));
+                                   break;
+                                case "fastmail.com":
+                                   fastmail.add(usuarios.get(i));
+                                   break;
+                            }
+                    }
                     }
                     
-                    for (int i=0; i<gmail.size(); i++){
-                        System.out.println("Gmail \n Nombre: " + usuarios.get(i).getNombre() + "\n "
-                            + "Apellido: "+ usuarios.get(i).getApellido()+ "\n Correo: "+ usuarios.get(i).getCorreo() + "\n Contraseña: "+ usuarios.get(i).getContra() + "\n Años: " + usuarios.get(i).getAnio()+ 
-                            "\n Dias: " + usuarios.get(i).getDia() + "\n Meses: " + usuarios.get(i).getMes());
-                    }
-                    
-                    for (int i=0; i<yahoo.size(); i++){
-                        System.out.println("\n Yahoo \n Nombre: " + usuarios.get(i).getNombre() + "\n "
-                            + "Apellido: "+ usuarios.get(i).getApellido()+ "\n Correo: "+ usuarios.get(i).getCorreo() + "\n Contraseña: "+ usuarios.get(i).getContra() + "\n Años: " + usuarios.get(i).getAnio()+ 
-                            "\n Dias: " + usuarios.get(i).getDia() + "\n Meses: " + usuarios.get(i).getMes());
-                    }
-                    
-                    for (int i=0; i<outlook.size(); i++){
-                        System.out.println("\n Outlook \n Nombre: " + usuarios.get(i).getNombre() + "\n "
-                            + "Apellido: "+ usuarios.get(i).getApellido()+ "\n Correo: "+ usuarios.get(i).getCorreo() + "\n Contraseña: "+ usuarios.get(i).getContra() + "\n Años: " + usuarios.get(i).getAnio()+ 
-                            "\n Dias: " + usuarios.get(i).getDia() + "\n Meses: " + usuarios.get(i).getMes());
-                    }
-                    
-                    for (int i=0; i<icloud.size(); i++){
-                        System.out.println("\n iCloud \n Nombre: " + usuarios.get(i).getNombre() + "\n "
-                            + "Apellido: "+ usuarios.get(i).getApellido()+ "\n Correo: "+ usuarios.get(i).getCorreo() + "\n Contraseña: "+ usuarios.get(i).getContra() + "\n Años: " + usuarios.get(i).getAnio()+ 
-                            "\n Dias: " + usuarios.get(i).getDia() + "\n Meses: " + usuarios.get(i).getMes());
-                    }
-                    
-                    for (int i=0; i<protonmail.size(); i++){
-                        System.out.println("\n ProtonMail \n Nombre: " + usuarios.get(i).getNombre() + "\n "
-                            + "Apellido: "+ usuarios.get(i).getApellido()+ "\n Correo: "+ usuarios.get(i).getCorreo() + "\n Contraseña: "+ usuarios.get(i).getContra() + "\n Años: " + usuarios.get(i).getAnio()+ 
-                            "\n Dias: " + usuarios.get(i).getDia() + "\n Meses: " + usuarios.get(i).getMes());
-                    }
-                    
-                    for (int i=0; i<fastmail.size(); i++){
-                        System.out.println("\n FastMail \n Nombre: " + usuarios.get(i).getNombre() + "\n "
-                            + "Apellido: "+ usuarios.get(i).getApellido()+ "\n Correo: "+ usuarios.get(i).getCorreo() + "\n Contraseña: "+ usuarios.get(i).getContra() +  "\n Años: " + usuarios.get(i).getAnio()+ 
-                            "\n Dias: " + usuarios.get(i).getDia() + "\n Meses: " + usuarios.get(i).getMes());
-                    }
-                    
+                    imprimeusuarios("Gmail",gmail);
+                    imprimeusuarios("Yahoo",yahoo);  
+                    imprimeusuarios("iCloud",icloud);
+                    imprimeusuarios("Outlook",outlook);
+                    imprimeusuarios("ProtonMail",protonmail);
+                    imprimeusuarios("FastMail",fastmail);
                     
                     break;
                     
@@ -175,7 +157,7 @@ public class Lab1P2_AlejandraReyes {
     }
     
     public static boolean matches2(String cad){
-        String regex = "^[a-zA-Z0-9._%&$+-?<>!]{8,}$";
+        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!?$%<>]).{8,}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(cad);
         return matcher.matches();
@@ -193,14 +175,27 @@ public class Lab1P2_AlejandraReyes {
     }
     
     public static boolean correoexiste (String correo){
-        boolean esta = false;
         for (int i =0; i<usuarios.size(); i++){
-            if (correo == (usuarios.get(i).getCorreo())){
+            if (correo.equals(usuarios.get(i).getCorreo())){
                 return true;
             }
         }
         return false;
     }
+    
+    public static void imprimeusuarios(String dom, ArrayList<Usuario> dominio) {
+        System.out.println("\n" + dom);
+        
+        for (int i=0; i<dominio.size(); i++){
+            Usuario usuario = dominio.get(i);
+                        System.out.println("\n Nombre: " + dominio.get(i).getNombre() + "\n "
+                            + "Apellido: "+ dominio.get(i).getApellido()+ "\n Correo: "+ dominio.get(i).getCorreo() + "\n Contraseña: "+ dominio.get(i).getContra() + "\n Años: " + dominio.get(i).getAnio()+ 
+                            "\n Dias: " + dominio.get(i).getDia() + "\n Meses: " + dominio.get(i).getMes());
+         }
+        
+    }
+    
+    
 
     
 }
